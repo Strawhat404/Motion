@@ -3,8 +3,12 @@ import { HeroSection } from "@/components/HeroSection";
 import { ExpertiseSection } from "@/components/ExpertiseSection";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { SkillsSection } from "@/components/SkillsSection";
+import { CertificatesSection } from "@/components/CertificatesSection";
+import { LearningSection } from "@/components/LearningSection";
+import { BlogSection } from "@/components/BlogSection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
+import { AIChatWidget } from "@/components/AIChatWidget";
 
 export default function Home() {
   return (
@@ -14,8 +18,12 @@ export default function Home() {
       <ExpertiseSection />
       <ProjectsSection />
       <SkillsSection />
+      <CertificatesSection />
+      <LearningSection />
+      <BlogSection />
       <ContactSection />
       <Footer />
+      <AIChatWidget />
     </div>
   );
 }

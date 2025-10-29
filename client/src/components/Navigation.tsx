@@ -13,6 +13,9 @@ export function Navigation() {
     { label: "Expertise", href: "#expertise" },
     { label: "Projects", href: "#projects" },
     { label: "Skills", href: "#skills" },
+    { label: "Certificates", href: "#certificates" },
+    { label: "Learning", href: "#learning" },
+    { label: "Blog", href: "#blog" },
     { label: "Contact", href: "#contact" },
   ];
 
