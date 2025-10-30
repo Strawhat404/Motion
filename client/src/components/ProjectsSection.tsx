@@ -7,6 +7,7 @@ import cyberSecurityImg from "@assets/generated_images/Cybersecurity_project_vis
 import aiMlImg from "@assets/generated_images/AI_ML_project_mockup_1400734f.png";
 import ecommerceImg from "@assets/generated_images/E-commerce_web_project_d8269799.png";
 import securityToolImg from "@assets/generated_images/Security_testing_tool_interface_2e132dde.png";
+import beaconImg from "@assets/image_1761824187474.png";
 
 type FilterType = "All" | "Full Stack" | "Security" | "AI";
 
@@ -15,12 +16,20 @@ export function ProjectsSection() {
 
   const projects = [
     {
+      title: "Beacon Proximity Marketing",
+      description: "IoT-based proximity marketing platform with smart beacon devices for location-based customer engagement. Features real-time analytics, automated campaigns, and device management.",
+      image: beaconImg,
+      category: "Full Stack" as const,
+      technologies: ["React", "Node.js", "IoT", "BLE", "Real-time Analytics"],
+      featured: true,
+      link: "https://beacon-admin-zeta.vercel.app/login",
+    },
+    {
       title: "Analytics Dashboard Platform",
       description: "Enterprise-grade analytics platform with real-time data visualization, custom reporting, and role-based access control. Built with microservices architecture for scalability.",
       image: fullStackImg,
       category: "Full Stack" as const,
       technologies: ["React", "Node.js", "PostgreSQL", "Redis", "Docker"],
-      featured: true,
     },
     {
       title: "Network Security Monitor",

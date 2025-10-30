@@ -12,6 +12,8 @@ interface ProjectCardProps {
   technologies: string[];
   featured?: boolean;
   delay?: number;
+  link?: string;
+  githubLink?: string;
 }
 
 export function ProjectCard({
@@ -22,6 +24,8 @@ export function ProjectCard({
   technologies,
   featured = false,
   delay = 0,
+  link,
+  githubLink,
 }: ProjectCardProps) {
   const categoryColors = {
     "Full Stack": "bg-chart-1/10 text-chart-1 border-chart-1/20",
@@ -76,14 +80,44 @@ export function ProjectCard({
           </div>
 
           <div className="flex gap-2">
-            <Button size="sm" variant="outline" className="flex-1" data-testid="button-view-demo">
-              <ExternalLink className="h-4 w-4 mr-2" />
-              Demo
-            </Button>
-            <Button size="sm" variant="outline" className="flex-1" data-testid="button-view-code">
-              <Github className="h-4 w-4 mr-2" />
-              Code
-            </Button>
+            {link ? (
+              <Button 
+                size="sm" 
+                variant="outline" 
+                className="flex-1" 
+                data-testid="button-view-demo"
+                asChild
+              >
+                <a href={link} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  Demo
+                </a>
+              </Button>
+            ) : (
+              <Button size="sm" variant="outline" className="flex-1" data-testid="button-view-demo">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Demo
+              </Button>
+            )}
+            {githubLink ? (
+              <Button 
+                size="sm" 
+                variant="outline" 
+                className="flex-1" 
+                data-testid="button-view-code"
+                asChild
+              >
+                <a href={githubLink} target="_blank" rel="noopener noreferrer">
+                  <Github className="h-4 w-4 mr-2" />
+                  Code
+                </a>
+              </Button>
+            ) : (
+              <Button size="sm" variant="outline" className="flex-1" data-testid="button-view-code">
+                <Github className="h-4 w-4 mr-2" />
+                Code
+              </Button>
+            )}
           </div>
         </div>
       </Card>
