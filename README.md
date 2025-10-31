@@ -1,31 +1,24 @@
 # Portfolio Website
 
-A modern, animated portfolio website showcasing full stack development, cybersecurity analysis, and AI/ML development expertise.
+A clean, modern portfolio website showcasing full stack development, cybersecurity analysis, and AI/ML development expertise.
 
 ## Features
 
-- **Modern Tech Stack**: React 18 + TypeScript + Vite
-- **Smooth Animations**: Framer Motion with scroll-triggered effects
+- **Simple & Fast**: React 18 + TypeScript + Vite SPA
+- **Smooth Animations**: Framer Motion for scroll-triggered effects
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
-- **Interactive Components**: Dynamic project showcases and skill demonstrations
-- **Dark/Light Theme**: Seamless theme switching
-- **Performance Optimized**: Fast loading with optimized assets
+- **Clean UI**: Minimal custom components, no bloated dependencies
+- **Dark/Light Theme**: Simple theme switching
+- **Static Deployment**: Optimized for CDN deployment
 
 ## Tech Stack
 
-### Frontend
 - React 18 with TypeScript
-- Vite for build tooling
+- Vite for build tooling and dev server
 - Tailwind CSS for styling
 - Framer Motion for animations
-- shadcn/ui component library
-- Wouter for routing
-- TanStack Query for state management
-
-### Backend
-- Express.js with TypeScript
-- Drizzle ORM (configured for PostgreSQL)
-- Session management ready
+- Custom UI components (no heavy libraries)
+- React Hook Form for contact form
 
 ## Getting Started
 
@@ -44,39 +37,33 @@ A modern, animated portfolio website showcasing full stack development, cybersec
    npm run build
    ```
 
-4. **Start production server**
+4. **Preview production build**
    ```bash
-   npm start
+   npm run preview
    ```
 
 ## Project Structure
 
 ```
-├── client/          # Frontend React application
-│   ├── src/
-│   │   ├── components/  # Reusable UI components
-│   │   ├── hooks/       # Custom React hooks
-│   │   ├── lib/         # Utility functions
-│   │   └── pages/       # Page components
-├── server/          # Backend Express server
-├── shared/          # Shared types and schemas
-└── attached_assets/ # Static assets and images
+├── src/
+│   ├── components/      # React components
+│   │   └── ui/         # Basic UI components
+│   ├── pages/          # Page components
+│   ├── lib/            # Utility functions
+│   └── assets/         # Static assets
+├── public/             # Public assets
+└── index.html          # Entry point
 ```
-
-## Development
-
-The project uses a modern development setup with:
-- Hot module replacement (HMR) for fast development
-- TypeScript for type safety
-- ESLint and Prettier for code quality
-- Responsive design testing
 
 ## Deployment
 
-The application is configured for easy deployment with:
-- Production build optimization
-- Static asset serving
-- Environment-based configuration
+This is a static SPA that can be deployed to:
+- Vercel (recommended)
+- Netlify
+- GitHub Pages
+- Any CDN or static hosting service
+
+Simply run `npm run build` and deploy the `dist` folder.
 
 ## License
 
