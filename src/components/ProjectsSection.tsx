@@ -7,7 +7,7 @@ const fullStackImg = "https://images.unsplash.com/photo-1460925895917-afdab827c5
 const cyberSecurityImg = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop";
 const aiMlImg = "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop";
 const ecommerceImg = "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop";
-const securityToolImg = "https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=600&h=400&fit=crop";
+const securityToolImg = "/assets/vulnerability-scanner-dashboard.png";
 const beaconImg = "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=400&fit=crop";
 
 type FilterType = "All" | "Full Stack" | "Security" | "AI";
@@ -55,10 +55,10 @@ export function ProjectsSection() {
     },
     {
       title: "Vulnerability Scanner",
-      description: "Automated security testing tool for web applications that identifies OWASP Top 10 vulnerabilities and provides detailed remediation guidance.",
+      description: "Comprehensive security testing suite with multiple scanning tools, real-time threat detection, and detailed vulnerability reporting dashboard with risk assessment metrics.",
       image: securityToolImg,
       category: "Security" as const,
-      technologies: ["Python", "Selenium", "OWASP ZAP", "Jenkins"],
+      technologies: ["Python", "Nmap", "OWASP ZAP", "Custom Scripts", "Security Dashboard"],
     },
     {
       title: "Computer Vision System",
