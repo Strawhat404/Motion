@@ -1,19 +1,24 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ProjectCard } from "./ProjectCard";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 // Using placeholder images - replace with your actual project screenshots
 const fullStackImg = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop";
 const cyberSecurityImg = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop";
 const aiMlImg = "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop";
-const ecommerceImg = "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop";
-const securityToolImg = "/assets/vulnerability-scanner-dashboard.png";
-const beaconImg = "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=400&fit=crop";
+const ecommerceImg = "/assets/emawas.png";
+const securityToolImg = "/assets/vulnerability_scanner.png";
+const beaconImg = "/assets/beacon_proximity.png";
+const realEstateImg = "/assets/Realstate.png";
+const fmArchImg = "/assets/fm_arch.png";
 
 type FilterType = "All" | "Full Stack" | "Security" | "AI";
 
 export function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 4;
 
   const projects = [
     {
@@ -54,6 +59,20 @@ export function ProjectsSection() {
       technologies: ["Next.js", "Stripe", "MongoDB", "AWS S3"],
     },
     {
+      title: "Real Estate Website",
+      description: "Modern real estate platform built with Next.js featuring property listings, advanced search filters, virtual tours, and agent management system with responsive design.",
+      image: realEstateImg,
+      category: "Full Stack" as const,
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
+    },
+    {
+      title: "FM Architecture and Designs",
+      description: "Professional architecture and design portfolio website showcasing architectural projects, interior designs, and construction services with interactive galleries and project timelines.",
+      image: fmArchImg,
+      category: "Full Stack" as const,
+      technologies: ["React", "Next.js", "Framer Motion", "Tailwind CSS", "Sanity CMS"],
+    },
+    {
       title: "Vulnerability Scanner",
       description: "Comprehensive security testing suite with multiple scanning tools, real-time threat detection, and detailed vulnerability reporting dashboard with risk assessment metrics.",
       image: securityToolImg,
@@ -76,6 +95,71 @@ export function ProjectsSection() {
       ? projects
       : projects.filter((p) => p.category === activeFilter);
 
+  // Reset to page 1 when filter changes
+  const handleFilterChange = (filter: FilterType) => {
+    setActiveFilter(filter);
+    setCurrentPage(1);
+  };
+
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  const startIndex = (currentPage - 1) * projectsPerPage;
+  const endIndex = startIndex + projectsPerPage;
+  const currentProjects = filteredProjects.slice(startIndex, endIndex);
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.9,
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -30,
+      scale: 0.9,
+      transition: {
+        duration: 0.2,
+      },
+    },
+  };
+
   return (
     <section id="projects" className="py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12">
@@ -92,29 +176,145 @@ export function ProjectsSection() {
             A selection of innovative solutions across web development, security, and AI
           </p>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            {filters.map((filter) => (
-              <Button
+          <motion.div 
+            className="flex flex-wrap justify-center gap-3"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+          >
+            {filters.map((filter, index) => (
+              <motion.div
                 key={filter}
-                variant={activeFilter === filter ? "default" : "outline"}
-                onClick={() => setActiveFilter(filter)}
-                className="rounded-full"
-                data-testid={`button-filter-${filter.toLowerCase().replace(/\s+/g, "-")}`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 + index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {filter}
-              </Button>
+                <Button
+                  variant={activeFilter === filter ? "default" : "outline"}
+                  onClick={() => handleFilterChange(filter)}
+                  className="rounded-full"
+                  data-testid={`button-filter-${filter.toLowerCase().replace(/\s+/g, "-")}`}
+                >
+                  {filter}
+                  {activeFilter === filter && (
+                    <motion.span
+                      className="ml-2 text-xs bg-white/20 px-2 py-0.5 rounded-full"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0 }}
+                    >
+                      {filteredProjects.length}
+                    </motion.span>
+                  )}
+                </Button>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredProjects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              {...project}
-              delay={index * 0.1}
-            />
-          ))}
+        {/* Projects Grid with Pagination */}
+        <div className="mt-16">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${activeFilter}-${currentPage}`}
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[600px]"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              {currentProjects.map((project) => (
+                <motion.div
+                  key={project.title}
+                  variants={itemVariants}
+                  whileHover={{ 
+                    y: -10,
+                    transition: { type: "spring", stiffness: 300 }
+                  }}
+                >
+                  <ProjectCard
+                    {...project}
+                    delay={0}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <motion.div
+              className="flex items-center justify-center gap-4 mt-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={handlePrevPage}
+                  disabled={currentPage === 1}
+                  className="rounded-full"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </Button>
+              </motion.div>
+
+              <div className="flex items-center gap-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <motion.div
+                    key={page}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <Button
+                      variant={currentPage === page ? "default" : "ghost"}
+                      size="icon"
+                      onClick={() => setCurrentPage(page)}
+                      className="rounded-full w-10 h-10"
+                    >
+                      {page}
+                    </Button>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                  className="rounded-full"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </motion.div>
+            </motion.div>
+          )}
+
+          {/* Page Info */}
+          <motion.div
+            className="text-center mt-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <p className="text-sm text-muted-foreground">
+              Showing {startIndex + 1}-{Math.min(endIndex, filteredProjects.length)} of {filteredProjects.length} projects
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>

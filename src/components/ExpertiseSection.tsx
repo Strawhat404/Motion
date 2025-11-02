@@ -6,15 +6,15 @@ export function ExpertiseSection() {
   const expertise = [
     {
       icon: Code2,
-      title: "Full Stack Engineering",
-      description: "Building scalable web applications with modern frameworks and best practices. From responsive frontends to robust backend systems.",
-      technologies: ["React", "Node.js", "TypeScript", "PostgreSQL", "AWS"],
+      title: "Full Stack Development",
+      description: "Building scalable web applications with modern frameworks and best practices. Expertise in both frontend and backend development with cloud deployment.",
+      technologies: ["Django", "Next.js", "Node.js", "React.js", "PostgreSQL", "TypeScript", "AWS"],
     },
     {
       icon: Shield,
-      title: "Cybersecurity Analysis",
-      description: "Securing digital infrastructure through penetration testing, vulnerability assessment, and implementing industry-standard security protocols.",
-      technologies: ["Penetration Testing", "SIEM", "Firewall", "Encryption", "Compliance"],
+      title: "Cybersecurity Analyst",
+      description: "Securing digital infrastructure through comprehensive security analysis, threat detection, and proactive defense strategies using advanced cybersecurity methodologies.",
+      technologies: ["Penetration Testing", "CTI", "Vulnerability Assessment", "Threat Hunting", "SIEM"],
     },
     {
       icon: Brain,
