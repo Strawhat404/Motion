@@ -28,7 +28,7 @@ export function ExpertiseCard({
     >
       <Card className="p-8 h-full hover-elevate transition-all duration-300 border-2 relative overflow-hidden group">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
+
         <div className="relative z-10">
           <div className="w-20 h-20 rounded-lg bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
             <Icon className="h-10 w-10 text-primary" />
